@@ -3,12 +3,11 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Payload.PayLoadUsingMap">
+      <class name="Payload.JsonFileAsPayload">
         <methods>
-          <include name="createBooking"/>
-          <include name="setUp"/>
+          <include name="sendJson"/>
         </methods>
-      </class> <!-- Payload.PayLoadUsingMap -->
+      </class> <!-- Payload.JsonFileAsPayload -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
