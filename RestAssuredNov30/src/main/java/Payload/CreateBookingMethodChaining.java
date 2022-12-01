@@ -1,10 +1,8 @@
-package RestfulBooker;
+package Payload;
 
-import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
@@ -19,6 +17,22 @@ public class CreateBookingMethodChaining {
 	//Define class level variable:
 	RequestSpecification requestSpecification;
 	ResponseSpecification responseSpecification;
+	
+	public String getCreateBookingPayload(String firstName,String lastName,String price) {
+		String payload="{\r\n"
+				+ "    \"firstname\" : \""+firstName+"\",\r\n"
+				+ "    \"lastname\" : \""+lastName+"\",\r\n"
+				+ "    \"totalprice\" : "+price+",\r\n"
+				+ "    \"depositpaid\" : true,\r\n"
+				+ "    \"bookingdates\" : {\r\n"
+				+ "        \"checkin\" : \"2022-12-01\",\r\n"
+				+ "        \"checkout\" : \"2022-12-01\"\r\n"
+				+ "    },\r\n"
+				+ "    \"additionalneeds\" : \"Breakfast\"\r\n"
+				+ "}";
+		
+		return payload;
+	}
 	
 	@BeforeClass
 	public void setUp() {
@@ -48,17 +62,7 @@ public class CreateBookingMethodChaining {
 		
 		RestAssured.given()
 		.spec(requestSpecification)
-		.body("{\r\n"
-				+ "    \"firstname\" : \"Jim\",\r\n"
-				+ "    \"lastname\" : \"Brown\",\r\n"
-				+ "    \"totalprice\" : 111,\r\n"
-				+ "    \"depositpaid\" : true,\r\n"
-				+ "    \"bookingdates\" : {\r\n"
-				+ "        \"checkin\" : \"2022-12-01\",\r\n"
-				+ "        \"checkout\" : \"2022-12-01\"\r\n"
-				+ "    },\r\n"
-				+ "    \"additionalneeds\" : \"Breakfast\"\r\n"
-				+ "}")
+		.body(getCreateBookingPayload("Jim", "Ju", "10000000"))
 		
 		//.baseUri("")
 		//.basePath("/booking")
@@ -99,7 +103,7 @@ public class CreateBookingMethodChaining {
 		
 	}
 	
-	@Test
+	//@Test
 	public void request2() {
 		RestAssured
 		.given()
@@ -127,7 +131,7 @@ public class CreateBookingMethodChaining {
 		
 	}
 
-	@Test
+	//@Test
 	public void request3() {
 		RestAssured
 		.given()
