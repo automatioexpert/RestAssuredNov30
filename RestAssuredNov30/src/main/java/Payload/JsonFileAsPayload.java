@@ -38,6 +38,8 @@ public class JsonFileAsPayload {
 		.when()
 		.post()
 		.then()
+		.log()
+		.all()
 		.statusCode(200);
 		
 	}
